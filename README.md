@@ -449,4 +449,4 @@ npm run readiness-report
 
 **🎉 STATUS ACHIEVED 🎉**
 
-Built with 🌙 **Midnight's Privacy Technology** + 🏆 **Engineering**
+Built with 🌙 **Midnight's Privacy Technology**
