@@ -1,4 +1,4 @@
-// Competition-Grade Cryptography Test Suite
+// Cryptography Test Suite
 
 import { SecureCryptographicNullifier, SecureNullifierRegistry } from '../cryptography/secureNullifier';
 import { ErrorHandler, ErrorCode } from '../utils/errorHandling';
@@ -17,7 +17,7 @@ export class CryptographyTestSuite {
     failed: number;
     results: any[];
   }> {
-    console.log('🧪 Starting Competition-Grade Cryptography Tests...\n');
+    console.log('🧪 Starting Cryptography Tests...\n');
     this.testResults = [];
 
     // Core cryptographic tests

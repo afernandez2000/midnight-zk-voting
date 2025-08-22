@@ -1,4 +1,4 @@
-// Competition-Grade Penetration Testing Suite
+// Penetration Testing Suite
 
 import { SecureCryptographicNullifier, SecureNullifierRegistry } from '../cryptography/secureNullifier';
 import { SecurityUtils } from './securityAudit';
@@ -27,7 +27,7 @@ export class PenetrationTester {
   private static testResults: PenetrationTestResult[] = [];
 
   static async runFullPenetrationTest(): Promise<PenetrationTestReport> {
-    console.log('🔍 Starting Competition-Grade Penetration Testing...\n');
+    console.log('🔍 Starting Penetration Testing...\n');
     
     this.testResults = [];
 

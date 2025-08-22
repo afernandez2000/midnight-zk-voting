@@ -1,4 +1,4 @@
-// Competition-Grade Performance Optimizations
+// Performance Optimizations
 
 export class CryptoPerformanceCache {
   private static hashCache = new Map<string, string>();

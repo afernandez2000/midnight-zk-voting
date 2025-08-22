@@ -1,4 +1,4 @@
-// Competition-Grade Cryptographic Implementation
+// Cryptographic Implementation
 // Secure nullifier generation with proper cryptographic primitives
 
 import * as CryptoJS from 'crypto-js';

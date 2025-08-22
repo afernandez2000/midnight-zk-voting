@@ -1,4 +1,4 @@
-// Competition-Grade Test Runner and Validation Suite
+// Test Runner and Validation Suite
 
 import CryptographyTestSuite from '../tests/cryptographyTests';
 import IntegrationTestSuite from '../tests/integrationTests';
@@ -28,7 +28,7 @@ export interface CompetitionValidationResult {
 
 export class CompetitionRunner {
   static async runFullValidation(): Promise<CompetitionValidationResult> {
-    console.log('🏆 Starting Competition-Grade Validation Suite');
+    console.log('🏆 Starting Validation Suite');
     console.log('=' .repeat(60));
     console.log('This comprehensive test will validate all aspects of the system\n');
 

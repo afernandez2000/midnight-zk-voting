@@ -1,4 +1,4 @@
-// Competition-Grade Security Audit and Best Practices
+// Security Audit and Best Practices
 
 export interface SecurityVulnerability {
   id: string;
@@ -24,7 +24,7 @@ export class SecurityAuditor {
   private static auditChecks = 0;
 
   static async runFullSecurityAudit(): Promise<SecurityAuditReport> {
-    console.log('🔒 Starting Competition-Grade Security Audit...\n');
+    console.log('🔒 Starting Security Audit...\n');
     
     this.vulnerabilities = [];
     this.auditChecks = 0;

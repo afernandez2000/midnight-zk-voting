@@ -1,4 +1,4 @@
-// Competition-Grade Integration Test Suite
+// Integration Test Suite
 
 import { SecureCryptographicNullifier, SecureNullifierRegistry } from '../cryptography/secureNullifier';
 import { ErrorHandler, ErrorCode, CircuitBreaker } from '../utils/errorHandling';
@@ -18,7 +18,7 @@ export class IntegrationTestSuite {
     failed: number;
     results: any[];
   }> {
-    console.log('🔗 Starting Competition-Grade Integration Tests...\n');
+    console.log('🔗 Starting Integration Tests...\n');
     this.testResults = [];
 
     // Core integration tests

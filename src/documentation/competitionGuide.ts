@@ -1,4 +1,4 @@
-// Competition-Grade Implementation Guide and Documentation
+// Implementation Guide and Documentation
 
 export interface CompetitionStandards {
   security: SecurityStandard[];

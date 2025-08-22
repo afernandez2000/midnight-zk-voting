@@ -1,4 +1,4 @@
-// Competition-Grade Error Handling and Validation System
+// Error Handling and Validation System
 
 export enum ErrorCode {
   // Cryptographic Errors
