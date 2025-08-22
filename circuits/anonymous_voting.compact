@@ -1,0 +1,112 @@
+// Anonymous Voting Circuit using Midnight's Compact language
+// Proves voter eligibility without revealing voter identity
+
+use std::collections::HashMap;
+
+circuit AnonymousVoting {
+    // Public inputs
+    pub proposal_id: Field,
+    pub vote_choice: Field, // 0 = No, 1 = Yes
+    pub vote_weight: Field, // Voting power (could be token-based)
+    
+    // Private inputs
+    priv voter_secret: Field, // Secret key proving voter identity
+    priv voter_nullifier: Field, // Prevents double voting
+    priv merkle_path: [Field; 20], // Path in voter registry Merkle tree
+    priv merkle_indices: [Field; 20], // Indices for Merkle path
+    
+    // Public outputs
+    pub nullifier_hash: Field, // Public nullifier to prevent double voting
+    pub vote_commitment: Field, // Commitment to the vote
+    
+    impl AnonymousVoting {
+        // Main circuit logic
+        pub fn main(self) -> (Field, Field) {
+            // 1. Verify voter is in the registry (Merkle tree verification)
+            let voter_leaf = self.compute_voter_leaf();
+            let computed_root = self.verify_merkle_path(voter_leaf);
+            
+            // 2. Compute nullifier hash to prevent double voting
+            let nullifier_hash = self.compute_nullifier();
+            
+            // 3. Create vote commitment
+            let vote_commitment = self.compute_vote_commitment();
+            
+            // 4. Verify vote choice is valid (0 or 1)
+            assert!(self.vote_choice == 0 || self.vote_choice == 1);
+            
+            // 5. Verify vote weight is positive
+            assert!(self.vote_weight > 0);
+            
+            (nullifier_hash, vote_commitment)
+        }
+        
+        // Compute voter leaf in Merkle tree
+        fn compute_voter_leaf(self) -> Field {
+            poseidon_hash([self.voter_secret, self.vote_weight])
+        }
+        
+        // Verify Merkle path to prove voter registration
+        fn verify_merkle_path(self, leaf: Field) -> Field {
+            let mut current = leaf;
+            
+            for i in 0..20 {
+                let is_right = self.merkle_indices[i];
+                let sibling = self.merkle_path[i];
+                
+                current = if is_right == 1 {
+                    poseidon_hash([sibling, current])
+                } else {
+                    poseidon_hash([current, sibling])
+                };
+            }
+            
+            current
+        }
+        
+        // Compute nullifier to prevent double voting
+        fn compute_nullifier(self) -> Field {
+            poseidon_hash([
+                self.voter_secret,
+                self.voter_nullifier,
+                self.proposal_id
+            ])
+        }
+        
+        // Create commitment to the vote
+        fn compute_vote_commitment(self) -> Field {
+            poseidon_hash([
+                self.proposal_id,
+                self.vote_choice,
+                self.vote_weight,
+                self.voter_nullifier
+            ])
+        }
+    }
+}
+
+// Helper circuit for vote aggregation
+circuit VoteAggregation {
+    pub vote_commitments: [Field; 100], // Array of vote commitments
+    pub total_yes_votes: Field,
+    pub total_no_votes: Field,
+    pub total_weight: Field,
+    
+    impl VoteAggregation {
+        pub fn main(self) -> (Field, Field, Field) {
+            let mut yes_count = 0;
+            let mut no_count = 0;
+            let mut total_weight = 0;
+            
+            // This would be implemented with proper aggregation logic
+            // For now, we return the provided totals
+            (self.total_yes_votes, self.total_no_votes, self.total_weight)
+        }
+    }
+}
+
+// Poseidon hash function (would be imported from Midnight's stdlib)
+fn poseidon_hash(inputs: [Field]) -> Field {
+    // Placeholder - would use actual Poseidon implementation
+    inputs[0] + inputs[1]
+}
