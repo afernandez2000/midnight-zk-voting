@@ -1,4 +1,4 @@
-# 🏆 Competition-Grade Midnight ZK Voting DApp
+# 🏆 Midnight ZK Voting DApp
 
 A **production-ready**, privacy-preserving voting decentralized application built with Midnight's zero-knowledge technology. This DApp features **enterprise-grade security**, **advanced cryptographic implementations**, and **comprehensive testing** designed for competition environments.
 
